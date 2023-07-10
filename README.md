@@ -21,7 +21,7 @@ This is a JavaScript coding quiz that tests your knowledge of HTML, CSS, and Jav
 
 To use the coding quiz application, got the the link provided or follow these steps:
 
-- 
+- https://kgberry542.github.io/Coding-Quiz/
 
 1. Clone this repository to your local machine.
 2. Open the `index.html` file in a web browser.
