@@ -107,6 +107,7 @@ let timerInterval;
 const startScreen = document.getElementById("start-screen");
 const quizScreen = document.getElementById("quiz-screen");
 const endScreen = document.getElementById("end-screen");
+const highScoresLink = document.getElementById("high-scores-link");
 const questionElement = document.getElementById("question");
 const optionsList = document.getElementById("options");
 const feedbackElement = document.getElementById("feedback");
@@ -114,6 +115,7 @@ const timeElement = document.getElementById("time");
 const scoreElement = document.getElementById("score");
 const initialsForm = document.getElementById("initials-form");
 const initialsInput = document.getElementById("initials");
+const highScoresContainer = document.getElementById("high-scores-container");
 
 // Function to start the quiz
 function startQuiz() {
@@ -205,5 +207,29 @@ function getHighScores() {
   return highScores ? JSON.parse(highScores) : [];
 }
 
+// Function to display high scores
+function displayHighScores() {
+  const highScores = getHighScores();
+  highScoresContainer.innerHTML = "";
+
+  if (highScores.length === 0) {
+    highScoresContainer.textContent = "No high scores to display.";
+  } else {
+    highScores.forEach((score) => {
+      const scoreItem = document.createElement("li");
+      scoreItem.textContent = `${score.initials}: ${score.score}`;
+      highScoresContainer.appendChild(scoreItem);
+    });
+  }
+}
+
 // Event listener for starting the quiz
 document.getElementById("start-btn").addEventListener("click", startQuiz);
+
+// Event listener for viewing high scores
+highScoresLink.addEventListener("click", () => {
+  startScreen.style.display = "none";
+  endScreen.style.display = "none";
+  highScoresContainer.style.display = "block";
+  displayHighScores();
+});
